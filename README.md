@@ -32,6 +32,31 @@
   ```
   
 # 使用arttemplate渲染模版（包括子模板的渲染）
+使用artTemplate的好处：<br>
+1、性能卓越，执行速度通常是 Mustache 与 tmpl 的 20 多倍（性能测试）<br>
+2、支持运行时调试，可精确定位异常模板所在语句（演示）<br>
+3、对 NodeJS Express 友好支持<br>
+4、安全，默认对输出进行转义、在沙箱中运行编译后的代码（Node版本可以安全执行用户上传的模板）<br>
+5、支持include语句，可在浏览器端实现按路径加载模板<br>
+6、支持预编译，可将模板转换成为非常精简的 js 文件<br>
+7、模板语句简洁，无需前缀引用数据<br>
+8、支持所有流行的浏览器<br>
+详细参考：https://aui.github.io/art-template/docs/<br>
+
+使用artTemplate普通模版<br>
+```html
+<script type="text/html" id="temp">
+    {{each list as value index}}
+    <li class='{{if index==0}}first{{/if}}'>
+        <a href="{{value.targetUrl}}">
+          {{value.text}}
+        </a>
+    </li>
+    {{/each}}
+</script>
+```
+使用arttemplate子模板
+...
 
 # 使用zepto代替jquery作为库文件
 
