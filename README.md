@@ -83,6 +83,23 @@ jsonp原理：<br>
 ```javascript
 callback({name:"name"})
 ```
+5、jquery/zepto有自己的回调方法，服务端的callback不要写死，最好根据前端传值来定：
+```javascript
+$.ajax({
+type : "GET",
+//<实例1：jsonp结构>
+//url : "http://searchpre.cnsuning.com/emall/mobile/mobileSearch.jsonp?set=5&keyword=&st=0&ci=293006&cityId=9173&ps=20&cp=0&cf=&iv=-1&ct=-1",
+//<实例2：dom结构+callback>
+//url :"http://zone.suning.com/review/wcs_review/000000000104083059-0-1---pinglunLoadData.html",
+//<实例3：jsonp结构+callback>  
+url : "http://zone.suning.com/review/ajax/top10user/000000000104083059-pinglunLoadDataCallback.html",
+dataType : "jsonp",
+jsonpCallback : "callback",
+success : function(data){
+alert("商品数量："+data.goodsCount);
+}
+});
+```
 
 cors方式跨域<br>
 需要服务器支持
