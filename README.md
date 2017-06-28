@@ -73,7 +73,19 @@ REM使用方法示例：<br>
 屏幕宽度为750px，则html设置的font-size为：750/15 = 50，设计稿中dom（20px）的尺寸为：20px/50=0.4rem，1rem = 50px<br>
 屏幕宽度为320px，则html设置的font-size为：320/15 = 21.33....，设计稿中dom（20px）的尺寸依然为：20px/50=0.4rem，1rem = 320/750*50px<br>
 
-# 页面中的跨域方案，通常使用jsonp，但也可以试用crocs
+# 页面中的跨域方案，通常使用jsonp，但也可以使用cors方式
+jsonp方式跨域<br>
+jsonp原理：<br>
+1、html中script、img、iframe等标签的src属性支持跨域请求<br>
+2、jsonp是通过将请求的url地址塞到script标签的src中发起请求<br>
+3、收到请求后相当于在html中引入了一个script，并加载了里面的代码（这部分代码就是服务器响应的具体数据）<br>
+4、因为服务器响应的数据释放到scrpit中，所以需要数据是以函数调用的格式（当然是字符串的形式），例如：<br>
+```javascript
+callback({name:"name"})
+```
+
+cors方式跨域<br>
+需要服务器支持
 
 # 微信分享接口的调用
 微信公众平台：https://mp.weixin.qq.com/wiki<br>
