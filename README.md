@@ -75,6 +75,8 @@ REM使用方法示例：<br>
 
 # 页面中的跨域方案，通常使用jsonp，但也可以使用cors方式
 jsonp方式跨域<br>
+详细参考：http://blog.csdn.net/superhosts/article/details/9057301<br>
+
 jsonp原理：<br>
 1、html中script、img、iframe等标签的src属性支持跨域请求<br>
 2、jsonp是通过将请求的url地址塞到script标签的src中发起请求<br>
@@ -86,18 +88,18 @@ callback({name:"name"})
 5、jquery/zepto有自己的回调方法，服务端的callback不要写死，最好根据前端传值来定：
 ```javascript
 $.ajax({
-type : "GET",
-//<实例1：jsonp结构>
-//url : "http://searchpre.cnsuning.com/emall/mobile/mobileSearch.jsonp?set=5&keyword=&st=0&ci=293006&cityId=9173&ps=20&cp=0&cf=&iv=-1&ct=-1",
-//<实例2：dom结构+callback>
-//url :"http://zone.suning.com/review/wcs_review/000000000104083059-0-1---pinglunLoadData.html",
-//<实例3：jsonp结构+callback>  
-url : "http://zone.suning.com/review/ajax/top10user/000000000104083059-pinglunLoadDataCallback.html",
-dataType : "jsonp",
-jsonpCallback : "callback",
-success : function(data){
-alert("商品数量："+data.goodsCount);
-}
+    type : "GET",
+    //<实例1：jsonp结构>
+    //url : "http://searchpre.cnsuning.com/emall/mobile/mobileSearch.jsonp?set=5&keyword=&st=0&ci=293006&cityId=9173&ps=20&cp=0&cf=&iv=-1&ct=-1",
+    //<实例2：dom结构+callback>
+    //url :"http://zone.suning.com/review/wcs_review/000000000104083059-0-1---pinglunLoadData.html",
+    //<实例3：jsonp结构+callback>  
+    url : "http://zone.suning.com/review/ajax/top10user/000000000104083059-pinglunLoadDataCallback.html",
+    dataType : "jsonp",
+    jsonpCallback : "callback",
+    success : function(data){
+    alert("商品数量："+data.goodsCount);
+    }
 });
 ```
 
