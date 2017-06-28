@@ -89,6 +89,44 @@ REM使用方法示例：<br>
 点击埋点：统计某一区域点击次数<br>
 
 # 页面数据分页加载的方案
+分页实现大致方案：<br>
+1、接口支持通过分页方案获取，通常必须两个参数：1个是页码pageNumber，2个是页面数据长度pageSize
+2、页面滑动一定的位置触发分页加载
+3、加新获取的数据添加到页面，并做好页面的记录
+
+
+触发分页加载的条件：
+```javascript
+    /**
+     * 滚动事件，触发分页加载
+     * 根据loadmore的位置来判断是否分页加载
+     */
+    pageScroll(){
+
+        var self = this;
+        var $lod = $("#loadmore");
+        window.addEventListener("scroll",myFunc);
+        window.addEventListener("mousewheel", myFunc, false);
+
+        function myFunc(){
+            var n = $lod[0]
+                , r = $lod.offset().top
+                , o = window.innerHeight || window.screen.height;
+
+
+            if(window.pageYOffset > r + o || window.pageYOffset < r - o && "done" != n.getAttribute("data-loaded")){
+                //void clearTimeout(i)
+            }
+            else{
+                if (window.pageYOffset > r - o - 30 && "done" != n.getAttribute("data-loaded")){
+                    self.pageNum > 0 && self.getF1Data();
+                }
+            }
+        }
+    }
+```
+
+
 
 # 页面图片或者dom懒加载的方案
 实现原理：<br>
