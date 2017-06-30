@@ -1,13 +1,26 @@
 # Mobile-Demo
 利用：zepto/artTemplate/rem/jsonp 等技术实现的移动端wap页DEMO
 
+# 本页目录
+[1、公共的HTML头部](#公共的html头部)<br>
+[2、使用arttemplate渲染模版（包括子模板的渲染）](#使用arttemplate渲染模版包括子模板的渲染)<br>
+[3、使用zepto代替jquery作为库文件](#使用zepto代替jquery作为库文件)<br>
+[4、使用rem单位来做响应式布局，并规范设计尺寸](#使用rem单位来做响应式布局并规范设计尺寸)<br>
+[5、页面中的跨域方案，通常使用jsonp，但也可以使用cors方式](#页面中的跨域方案通常使用jsonp但也可以使用cors方式)<br>
+[6、微信分享接口的调用](#微信分享接口的调用)<br>
+[7、wap端页面的调试，chrome/远程/app调试](#wap端页面的调试chrome远程app调试)<br>
+[8、唤起客户端的方法](#唤起客户端的方法)<br>
+[9、页面的埋点方案](#页面的埋点方案)<br>
+[10、页面数据分页加载的方案](#页面数据分页加载的方案)<br>
+[11、页面图片或者dom懒加载的方案](#页面图片或者dom懒加载的方案)<br>
+[12、页面性能优化方案](#页面性能优化方案)<br>
 
-# 公共的头部
+# 公共的HTML头部
 ```html
 <!--统一使用HTML5文档声明；-->
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <!--统一使用UTF-8编码 ；-->
     <meta charset="UTF-8">
     <!--//initial-scale=1.0：强制让文档的宽度与设备的宽度保持1:1-->
@@ -24,13 +37,25 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <!--所有页面都要引用favicon并且直接使用线上地址；-->
-    <link rel="shortcut icon" href="http://xxx.xxx.com/favicon.ico" type="image/x-icon"/>
-    </head>
+    <!--<link rel="shortcut icon" href="http://xxx.xxx.com/favicon.ico" type="image/x-icon"/>-->
+    <link href="common.css">
+</head>
 <body>
+
+<!--zepto 可以自定义扩展-->
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<!--参考地址：https://aui.github.io/art-template/docs/installation.html-->
+<script src="https://raw.githubusercontent.com/aui/art-template/master/lib/template-web.js"></script>
+
+<script src="index.js"></script>
+
 </body>
 </html>
   ```
   
+为什么要将<script>放在页面底部，参考：[web页面加载流程](https://github.com/ymcdhr/Mobile-Demo/issues/1)
+
+
 # 使用arttemplate渲染模版（包括子模板的渲染）
 使用artTemplate的好处：<br>
 1、性能卓越，执行速度通常是 Mustache 与 tmpl 的 20 多倍（性能测试）<br>
@@ -45,20 +70,55 @@
 
 使用artTemplate普通模版<br>
 ```html
-<script type="text/html" id="temp">
-    {{each list as value index}}
-    <li class='{{if index==0}}first{{/if}}'>
-        <a href="{{value.targetUrl}}">
-          {{value.text}}
-        </a>
-    </li>
-    {{/each}}
+<!--artTemplate模版定义-->
+<!--父模版-->
+<script type="text/html" id="fTemp">
+
+    <div class="list-box">
+        <ul>
+            {{each list as value index}}
+            <li class="list-li">
+                {{include 'sTemp' value}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
 </script>
 ```
+
 使用arttemplate子模板
-...
+```html
+<!--子模板-->
+<!--注意：子模板中直接取父摸版中value的值-->
+<script type="text/html" id="sTemp">
+
+    <a class="list-a">
+        <div class="list-title">{{godsDesc}}</div>
+        <div class="list-abs">{{godsName}}</div>
+    </a>
+
+</script>
+```
+
+渲染模版，并将数据插入到html
+```javascript
+/**
+ * 渲染页面
+ */
+renderPage: function(){
+
+    var list = this.list;
+    var html = template("fTemp",{list: list});
+
+
+    $(".w").append(html);
+}
+```
 
 # 使用zepto代替jquery作为库文件
+尽量试用cdn资源，以提高访问速度：<br>
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
 
 # 使用rem单位来做响应式布局，并规范设计尺寸
 详细参考：http://www.qdfuns.com/notes/19478/6ccc9300876e9347dcbd8ae40e64a939.html<br>
@@ -114,6 +174,8 @@ cors方式跨域<br>
 使用fidder参考：http://www.qdfuns.com/notes/19478/de3df94004e5e24ffb5ad26c4ab78e57.html
 
 # 客户端方法的调用（包括跳转页面路由到客户端，调用客户端公用js sdk等）
+
+# 唤起客户端的方法
 
 # 页面的埋点方案，包括流量埋点和点击埋点
 流量埋点：统计页面访问流量<br>
@@ -171,3 +233,6 @@ cors方式跨域<br>
 
 # 页面性能优化方案
 略，待添加
+
+1、
+5、使用逗号合并js的访问，需要服务器的支持
