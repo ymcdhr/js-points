@@ -88,6 +88,21 @@
 </script>
 ```
 
+渲染模版，并将数据插入到html
+```javascript
+/**
+ * 渲染页面
+ */
+renderPage: function(){
+
+    var list = this.list;
+    var html = template("fTemp",{list: list});
+
+
+    $(".w").append(html);
+}
+```
+
 # 使用zepto代替jquery作为库文件
 尽量试用cdn资源，以提高访问速度：<br>
 <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
