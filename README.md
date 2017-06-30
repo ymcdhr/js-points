@@ -59,6 +59,8 @@
 ...
 
 # 使用zepto代替jquery作为库文件
+尽量试用cdn资源，以提高访问速度：<br>
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
 
 # 使用rem单位来做响应式布局，并规范设计尺寸
 详细参考：http://www.qdfuns.com/notes/19478/6ccc9300876e9347dcbd8ae40e64a939.html<br>
@@ -173,3 +175,6 @@ cors方式跨域<br>
 
 # 页面性能优化方案
 略，待添加
+
+1、
+5、使用逗号合并js的访问，需要服务器的支持
