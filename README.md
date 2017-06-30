@@ -231,8 +231,4 @@ cors方式跨域<br>
 （4）如果图片位置在屏幕底部边缘以上，则将data-src的值设置到src中，此时图片开始加载<br>
 （5）对加载的图片做标记：data-loaded="done"<br>
 
-# 页面性能优化方案
-略，待添加
-
-1、
-5、使用逗号合并js的访问，需要服务器的支持
+# [页面性能优化方案](https://github.com/ymcdhr/Mobile-Demo/issues/2)
