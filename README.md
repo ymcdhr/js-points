@@ -2,12 +2,12 @@
 利用：zepto/artTemplate/rem/jsonp 等技术实现的移动端wap页DEMO
 
 
-# 公共的头部
+# 公共的HTML头部
 ```html
 <!--统一使用HTML5文档声明；-->
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <!--统一使用UTF-8编码 ；-->
     <meta charset="UTF-8">
     <!--//initial-scale=1.0：强制让文档的宽度与设备的宽度保持1:1-->
@@ -24,13 +24,25 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <!--所有页面都要引用favicon并且直接使用线上地址；-->
-    <link rel="shortcut icon" href="http://xxx.xxx.com/favicon.ico" type="image/x-icon"/>
-    </head>
+    <!--<link rel="shortcut icon" href="http://xxx.xxx.com/favicon.ico" type="image/x-icon"/>-->
+    <link href="common.css">
+</head>
 <body>
+
+<!--zepto 可以自定义扩展-->
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<!--参考地址：https://aui.github.io/art-template/docs/installation.html-->
+<script src="https://raw.githubusercontent.com/aui/art-template/master/lib/template-web.js"></script>
+
+<script src="index.js"></script>
+
 </body>
 </html>
   ```
   
+为什么要将<script>放在页面底部，参考：[web页面加载流程](https://github.com/ymcdhr/Mobile-Demo/issues/1)
+
+
 # 使用arttemplate渲染模版（包括子模板的渲染）
 使用artTemplate的好处：<br>
 1、性能卓越，执行速度通常是 Mustache 与 tmpl 的 20 多倍（性能测试）<br>
