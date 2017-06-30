@@ -196,6 +196,8 @@ cors方式跨域<br>
 流量埋点：统计页面访问流量<br>
 点击埋点：统计某一区域点击次数<br>
 
+参考：http://blog.csdn.net/simongeek/article/details/53464005
+
 # 页面数据分页加载的方案
 分页实现大致方案：<br>
 1、接口支持通过分页方案获取，通常必须两个参数：1个是页码pageNumber，2个是页面数据长度pageSize<br>
