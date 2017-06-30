@@ -232,7 +232,4 @@ cors方式跨域<br>
 （5）对加载的图片做标记：data-loaded="done"<br>
 
 # 页面性能优化方案
-略，待添加
-
-1、
-5、使用逗号合并js的访问，需要服务器的支持
+参考：[页面性能优化方案](https://github.com/ymcdhr/Mobile-Demo/issues/2)
