@@ -1,3 +1,6 @@
+# Mobile-Demo
+利用：zepto/artTemplate/rem/jsonp 等技术实现的移动端wap页DEMO
+
 # 本页目录
 [1、公共的HTML头部](#公共的html头部)<br>
 [2、使用arttemplate渲染模版（包括子模板的渲染）](#使用arttemplate渲染模版包括子模板的渲染)<br>
@@ -11,10 +14,6 @@
 [10、页面数据分页加载的方案](#页面数据分页加载的方案)<br>
 [11、页面图片或者dom懒加载的方案](#页面图片或者dom懒加载的方案)<br>
 [12、页面性能优化方案](#页面性能优化方案)<br>
-
-# Mobile-Demo
-利用：zepto/artTemplate/rem/jsonp 等技术实现的移动端wap页DEMO
-
 
 # 公共的HTML头部
 ```html
