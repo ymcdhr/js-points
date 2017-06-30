@@ -57,18 +57,36 @@
 
 使用artTemplate普通模版<br>
 ```html
-<script type="text/html" id="temp">
-    {{each list as value index}}
-    <li class='{{if index==0}}first{{/if}}'>
-        <a href="{{value.targetUrl}}">
-          {{value.text}}
-        </a>
-    </li>
-    {{/each}}
+<!--artTemplate模版定义-->
+<!--父模版-->
+<script type="text/html" id="fTemp">
+
+    <div class="list-box">
+        <ul>
+            {{each list as value index}}
+            <li class="list-li">
+                {{include 'sTemp' value}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
 </script>
 ```
+
 使用arttemplate子模板
-...
+```html
+<!--子模板-->
+<!--注意：子模板中直接取父摸版中value的值-->
+<script type="text/html" id="sTemp">
+
+    <a class="list-a">
+        <div class="list-title">{{godsDesc}}</div>
+        <div class="list-abs">{{godsName}}</div>
+    </a>
+
+</script>
+```
 
 # 使用zepto代替jquery作为库文件
 尽量试用cdn资源，以提高访问速度：<br>
