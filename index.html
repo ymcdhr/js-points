@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--统一使用UTF-8编码 ；-->
+    <meta charset="UTF-8">
+    <!--//initial-scale=1.0：强制让文档的宽度与设备的宽度保持1:1-->
+    <!--//maximum-scale=1.0：文档最大的宽度比例是1.0-->
+    <!--//user-scalable=0：且不允许用户点击屏幕放大浏览-->
+    <!--//尤其要注意的是：content里多个属性的设置一定要用“分号+空格”来隔开，如果不规范将不会起作用。-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="wap-font-scale" content="no" />
+    <!--必须预留title、keywords和description；-->
+    <title>wap-demo</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <!--所有页面都要引用favicon并且直接使用线上地址；-->
+    <!--<link rel="shortcut icon" href="http://xxx.xxx.com/favicon.ico" type="image/x-icon"/>-->
+    <link rel="stylesheet"  href="style/common.css">
+    <link rel="stylesheet"  href="style/index.css">
+</head>
+<body>
+
+<!--页面容器-->
+<div class="w">
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!--artTemplate模版定义-->
+<!--父模版-->
+<script type="text/html" id="fTemp">
+
+    <div class="list-box">
+        <ul>
+            {{each list as value index}}
+            <li class="list-li">
+                {{include 'sTemp' value}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
+</script>
+
+
+<!--子模板-->
+<!--注意：子模板中直接取父摸版中value的值-->
+<script type="text/html" id="sTemp">
+
+    <a class="list-a" name="{{buryPoint}}">
+            <div class="list-left"><img src="{{imgUrl}}"></div>
+            <div class="list-right">
+                <div class="list-title">{{godsDesc}}</div>
+                <div class="list-abs">{{godsName}}</div>
+            </div>
+    </a>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<!--脚本引入-->
+<!--zepto 可以自定义扩展-->
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<!--参考地址：https://aui.github.io/art-template/docs/installation.html-->
+<script src="script/template-web.js"></script>
+<!--功能js引入-->
+<script src="script/index.js"></script>
+
+</body>
+</html>
