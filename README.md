@@ -122,9 +122,11 @@ renderPage: function(){
 
 # 使用rem单位来做响应式布局，并规范设计尺寸
 详细参考：http://www.qdfuns.com/notes/19478/6ccc9300876e9347dcbd8ae40e64a939.html<br>
-REM的定义：<br>
+
+1、REM的定义：<br>
 rem是相对于根元素<html>来设置字体大小的，这样就意味着，我们只需要在根元素确定一个参考值，在根元素中设置多大的字体，这完全可以根据您自己的需求。<br>
-REM使用方法示例：<br>
+
+2、REM使用方法示例：<br>
 1.html中默认的 font-size:16px; 也就是 1rem = 16px<br>
 2.以设计宽度为750px为例，那么定义 font-size:50px; 那么 1rem = 50px，比例为：750/50=15<br>
 3.定义页面中的尺寸，就是: 宽度/50 rem（比例为15）。例如：设计稿中dom（20px）的尺寸为：20px/50=0.4rem<br>
