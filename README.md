@@ -3,6 +3,7 @@
 
 # 项目说明
 ## 一、基本的wap demo
+参考下文:[本页目录](#一本页目录)
 ## 二、滑动Tab/List组件 demo
 参考[滑动tab/list效果，目前淘宝/京东/苏宁在用](https://github.com/ymcdhr/Mobile-Demo/issues/3)<br>
 该demo在工程中：scrollTab.html 有完整代码。
