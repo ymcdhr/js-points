@@ -2,10 +2,14 @@
 利用：zepto/artTemplate/rem/jsonp 等技术实现的移动端wap页DEMO
 
 # 项目说明
-## 一、基本的wap demo
-## 二、滑动Tab/List组件 demo
+### 1、基本的wap demo
+参考下文:[本页目录](#一本页目录)<br>
+该demo在工程中：index.html 有完整代码，演示了多个功能点及组件的使用方法。
+### 2、滑动Tab/List组件 demo
 参考[滑动tab/list效果，目前淘宝/京东/苏宁在用](https://github.com/ymcdhr/Mobile-Demo/issues/3)<br>
 该demo在工程中：scrollTab.html 有完整代码。
+### 3、Jquery/zepto扩展方法
+参考[Jquery/zepto扩展方法](https://github.com/ymcdhr/Mobile-Demo/issues/4)
 
 # 一、本页目录
 [1、公共的HTML头部](#公共的html头部)<br>
