@@ -1,0 +1,184 @@
+<!--本页面主要为iscroll和滑动tab的开发方案-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--统一使用UTF-8编码 ；-->
+    <meta charset="UTF-8">
+    <!--//initial-scale=1.0：强制让文档的宽度与设备的宽度保持1:1-->
+    <!--//maximum-scale=1.0：文档最大的宽度比例是1.0-->
+    <!--//user-scalable=0：且不允许用户点击屏幕放大浏览-->
+    <!--//尤其要注意的是：content里多个属性的设置一定要用“分号+空格”来隔开，如果不规范将不会起作用。-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="wap-font-scale" content="no" />
+    <!--必须预留title、keywords和description；-->
+    <title>jquery/zepto扩展方法</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <title></title>
+
+    <!--主要是用rem的功能-->
+    <link rel="stylesheet" href="style/rem.css">
+
+    <style></style>
+</head>
+<body>
+
+
+
+
+
+
+<!--测试用-->
+<div class="w">
+
+    jquery/zepto扩展插件的方法，F12查看console.log
+
+    <div id="test">test的内容</div>
+
+</div>
+
+
+
+
+
+
+
+<!--库文件引入-->
+<!--zepto 可以自定义扩展-->
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+
+
+<!--调用库文件测试-->
+<script>
+    /**
+     jQuery插件的开发包括两种：
+     一种是类级别的插件开发，即给jQuery添加新的全局函数，相当于给jQuery类本身添加方法。jQuery的全局函数就是属于jQuery命名空间的函数，
+     另一种是对象级别的插件开发，即给jQuery对象添加方法。下面就两种函数的开发做详细的说明。
+    */
+
+
+    /**
+     1、类级别的插件开发
+     类级别的插件开发最直接的理解就是给jQuery类添加类方法，可以理解为添加静态方法。典型的例子就是$.AJAX()这个函数，将函数定义于jQuery的命名空间中。关于类级别的插件开发可以采用如下几种形式进行扩展：
+     */
+
+    //1.1定义一个全局函数
+    $.foo1 = function() {
+        console.log('添加一个新的全局函数foo1');
+    };
+    //定义多个全局函数
+    $.foo2 = function() {
+        console.log('再增加一个全局函数foo2');
+    };
+    //1.2使用extend定义全局函数
+    $.extend($,{
+        foo3:function() {
+            console.log('extend 定义全局函数foo3');
+        },
+        foo4:function() {
+            console.log('extend 定义全局函数foo4');
+        }
+    });
+    //1.3 使用命名空间定义函数
+    $.plugin = {
+        foo5:function() {
+            console.log('使用namespace定义函数foo5');
+        }
+    };
+
+    //示例：
+    $.showTest = function(id){
+        console.log("类级别的插件扩展：",$(id).text());
+    };
+
+    $(function(){
+        $.foo1();
+        $.foo2();
+        $.foo3();
+        $.foo4();
+        $.plugin.foo5();
+        $.showTest("#test");
+    });
+
+
+    /**
+     2、对象级别的插件开发，即直接通过dom调用方法
+     对象级别的插件开发需要如下的两种形式:
+     */
+
+    //形式一
+    $.extend($.fn,{
+        bar1:function() {
+            console.log('对象级别插件extend方式1，bar1');
+        },
+        bar2:function() {
+            console.log('对象级别插件extend方式2，bar2');
+        }
+    });
+
+    //形式二
+    $.fn.bar3 = function() {
+        console.log('对象级别插件fn方式，bar3');
+    };
+
+    //接收参数来控制插件的行为
+    $.fn.bar4 = function(options) {
+        var defaults = {
+            aaa:'1',
+            bbb:'2'
+        };
+        var opts = $.extend(defaults, options);
+        console.log('参数值:aaa:'+opts.aaa+';bbb:'+opts.bbb);
+    };
+
+    //提供公有方法访问插件的配置项值
+    $.fn.bar5 = function(options) {
+        var opts = $.extend($.fn.bar5.defaults, options);
+        console.log('参数值:aaa:'+opts.aaa+';bbb:'+opts.bbb);
+    };
+    $.fn.bar5.defaults = {
+        aaa:'1',
+        bbb:'2'
+    };
+
+    //提供公有方法来访问插件中其他的方法
+    $.fn.bar6 = function(options) {
+        $.fn.bar6.alert(options);
+    };
+
+    $.fn.bar6.alert = function(params) {
+        console.log(params);
+    };
+
+
+    //示例：
+    $.fn.showTest = function(){
+        console.log("对象级别的插件扩展：",$(this).text());
+    };
+
+
+    $(function(){
+        var $dom = $('#test');
+
+        $dom.bar1();
+        $dom.bar2();
+        $dom.bar3();
+        $dom.bar4();
+        $dom.bar4({aaa:'3'});
+        $dom.bar4({aaa:'3',bbb:'4'});
+        $dom.bar5();
+        $dom.bar5({aaa:'5',bbb:'6'});
+        $dom.bar6('bar6');
+
+        $dom.showTest();
+    });
+
+
+</script>
+</body>
+</html>
