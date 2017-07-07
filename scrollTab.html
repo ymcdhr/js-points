@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--统一使用UTF-8编码 ；-->
+    <meta charset="UTF-8">
+    <!--//initial-scale=1.0：强制让文档的宽度与设备的宽度保持1:1-->
+    <!--//maximum-scale=1.0：文档最大的宽度比例是1.0-->
+    <!--//user-scalable=0：且不允许用户点击屏幕放大浏览-->
+    <!--//尤其要注意的是：content里多个属性的设置一定要用“分号+空格”来隔开，如果不规范将不会起作用。-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="wap-font-scale" content="no" />
+    <!--必须预留title、keywords和description；-->
+    <title>scrllTab-demo</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <title></title>
+
+    <!--主要是用rem的功能-->
+    <link rel="stylesheet" href="style/rem.css">
+
+    <style>
+
+        /*本页样式*/
+        ul{
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+        ul li{
+            list-style: none;
+        }
+
+        ul li img{
+            width: 14.5rem;
+        }
+
+
+        /*tab样式*/
+        /*最上层父元素必须要position: relative;*/
+        .tab{
+            position: relative;
+            height: 2rem;
+            margin: 1rem 0;
+        }
+        /*父元素必须要有position: absolute;*/
+        .tab-box{
+            position: absolute;
+        }
+        .tab-box.fixed{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            margin-left: 8px;
+        }
+        .tab ul{
+            width: auto;
+            /*height: 1rem;*/
+            white-space: nowrap;
+            font-size: 0;/*去掉inline-block的间距*/
+        }
+        .tab ul li{
+            display: inline-block;
+            font-size: .68rem;
+            padding: 0 1rem;
+            height: 2rem;
+            line-height: 2rem;
+            background-color: #E0E0E0;
+            border-right: 1px solid #FFFFFF;
+        }
+
+        .tab ul li.cur{
+            color: #FFFFFF;
+            background-color: #2f8ffd;
+        }
+        
+        
+        
+
+    </style>
+</head>
+<body>
+<div class="w">
+    <div>
+        <b>说明：</b><br>
+        此页面用到了zepto、artTemplate等框架<br>
+        此页面用到了iscroll组件：<br>
+        参考：https://segmentfault.com/a/1190000003113280、https://github.com/cubiq/iscroll/tree/master/build
+    </div>
+
+
+    <div class="box">
+
+        <!--tab,使用iscroll组件-->
+        <div class="tab sticky">
+            <div class="tab-box">
+                <ul>
+                    <li cate-id="list-1">标签1</li>
+                    <li cate-id="list-2">标签2</li>
+                    <li cate-id="list-3">标签3</li>
+                    <li cate-id="list-4">标签4</li>
+                    <li cate-id="list-5">标签5</li>
+                    <li cate-id="list-6">标签6</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!--list,用于存储列表数据-->
+        <!--list,实现滑动切换效果-->
+        <div class="list">
+            <ul id="list-1" class="list-ul">
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+            </ul>
+            <ul id="list-2" class="list-ul">
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+            </ul>
+            <ul id="list-3" class="list-ul">
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+            </ul>
+            <ul id="list-4" class="list-ul">
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+            </ul>
+            <ul id="list-5" class="list-ul">
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+            </ul>
+            <ul id="list-6" class="list-ul">
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+                <li><a class=""><img src="imgs/demo.png"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--库文件引入-->
+<!--zepto 可以自定义扩展-->
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<!--参考地址：https://aui.github.io/art-template/docs/installation.html-->
+<script src="script/template-web.js"></script>
+<script src="script/iscroll-lite.js"></script>
+
+
+
+<!--功能逻辑实现-->
+<script>
+
+/**
+ * Tab类
+ * 包括以下功能：
+ * 1、初始化tab的滑动效果
+ * 2、初始化tab的吸顶效果，ios用sticky，android用js+css实现
+ * 3、切换到指定tab的选中效果，并带有滑动动画
+ */
+var Tab = {
+
+    /**
+     * 初始化tab的滑动效果
+     */
+    initScroll: function(){
+        //初始化scollbar
+        this.iScroll = new IScroll(".tab",{
+            scrollX: true,
+            scrollY: false,
+            click: false,
+            preventDefaultException: {
+                tagName: /.*/
+            },
+            eventPassthrough: true
+        });
+    },
+
+
+    /**
+     * 滑动到tab的对应位置
+     */
+    slideToTab:function(tab){
+        var self = this,
+                tabBox = $(".tab"),
+                half_w = tabBox.width() / 2 - 15;
+
+        var max_x = self.iScroll ? self.iScroll.maxScrollX : 0,
+                index = $(tab).index();
+
+
+        //点击滚动距离
+        if (self.iScroll) {
+            let left = tabBox.find("li").eq(index)[0].offsetLeft;
+            let _moveX = 0;
+            if ((max_x + left - half_w) < 0) {
+                if (left > half_w) {
+                    _moveX = half_w - left;
+                }
+            } else {
+                _moveX = max_x;
+            }
+            setTimeout(function () {
+                self.iScroll.scrollTo(_moveX, 0, 400)
+            }, 180);
+        }
+    },
+
+
+    /**
+     * 滚动事件，设置Tab的吸顶效果
+     */
+    setTabTop:function(){
+
+        var myFunc = function (){
+
+            //导航fixed
+            var tab = $(".tab"),
+                tabBox = $(".tab-box");
+
+            //需要通过父元素来定位
+            if(tab.css("position").indexOf("sticky") < 0){
+
+                tab.offset().top-$("body").scrollTop()<0?tabBox.addClass("fixed"):tabBox.removeClass("fixed");
+
+            }
+        };
+
+        window.addEventListener("scroll",myFunc);
+        window.addEventListener("mousewheel", myFunc, false);
+
+    }
+
+};
+
+
+/**
+ * 页面功能类
+ */
+var M = {
+
+    init: function(){
+        this.tabBox = $(".tab-box ");
+        this.listBox = $(".list-ul");
+
+        this.pageScroll();
+        this.setCatePos();
+    },
+
+
+
+    /**
+     * 滚动事件，设置Tab的吸顶效果
+     * 根据滚动位置，判断选中哪个tab
+     */
+    pageScroll: function(){
+
+        window.addEventListener("scroll",this.addCurToTab.bind(this));
+        window.addEventListener("mousewheel", this.addCurToTab.bind(this), false);
+
+    },
+
+
+
+
+    /**
+     * 根据dom的位置，判断是否选中tab
+     */
+    addCurToTab: function() {
+
+
+        var self = this;
+        var finalDom = false;
+
+        getScrolledDom();
+
+        slideToTab();
+
+
+
+
+        //获取最后滑动的Dom
+        function getScrolledDom(){
+
+            var tabHeight = self.tabBox.height(),
+                fontSize = parseInt($("html").css("font-size"), 10),
+                needCur;
+
+            $.each(self.listBox, function(idx, listDom){
+                try{
+                    //需要减去顶部tab的高度tabHeight，预留一些2rem的误差（提前切换tab）
+                    needCur = $(listDom).offset().top - $("body").scrollTop() < tabHeight + 2*fontSize;
+                    if(needCur && listDom){
+                        finalDom = listDom;
+                    }
+                }
+                catch(e){
+                    console.log(e.message);
+                }
+            });
+        }
+
+
+
+        //切换tab到指定的位置
+        function slideToTab(){
+
+            if(finalDom){
+
+                var cateId = finalDom.id,
+                    $sliDom = $("li[cate-id='"+cateId+"']");
+
+                if(!$sliDom.hasClass("cur")){
+                    $sliDom.addClass("cur").siblings().removeClass("cur");
+                    Tab.slideToTab($sliDom[0]);
+                }
+            }
+        }
+    },
+
+
+
+    /**
+     * 切换子类别
+     */
+    setCatePos: function(){
+        var self = this;
+
+        //监听tab点击事件
+        self.tabBox.on("click","li",function(){
+
+            $(this).addClass("cur").siblings().removeClass("cur");
+
+            Tab.slideToTab(this);
+
+            self.scrollToList(this);
+
+        });
+    },
+
+
+
+    /**
+     * 滑动到对应的list数据位置
+     */
+    scrollToList: function(listDom){
+
+        var tabHeight = this.tabBox.height();
+
+        //将位置滑动到对应的.f5-box-ul的位置
+        //因为有tab，所以需要多滑动tab的高度
+        var top = $("#" + $(listDom).attr("cate-id"))[0].offsetTop;
+        $("body").scrollTop(top - tabHeight);
+
+    }
+};
+
+
+
+
+
+$(function(){
+
+    Tab.initScroll();
+    Tab.setTabTop();
+
+    M.init();
+
+});
+
+
+
+
+</script>
+</body>
+</html>
