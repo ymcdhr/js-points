@@ -1,4 +1,4 @@
-# Mobile-Demo
+# Mobile-Demo(代码未整理完成，持续更新)
 利用：zepto/artTemplate/rem/jsonp 等技术实现的移动端wap页DEMO
 
 # 项目说明
