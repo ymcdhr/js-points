@@ -6,6 +6,7 @@
 * 前端页面性能优化
 * JS单线程机制、事件循环
 * web安全—xss/csrf/https
+* setTimeout原理，以及如何给里面函数传参？
 
 ### 前端工程化、脚手架工具
 * gulp
